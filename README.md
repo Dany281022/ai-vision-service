@@ -1,46 +1,56 @@
-# AI Vision Service – AIE1018 Assignment
+# AI Vision Service
 
-## Overview
-AI-powered SaaS for image analysis using OpenAI Vision (gpt-4o-mini). Users upload images for detailed descriptions. Tiered access via Clerk: Free (1 analysis), Premium (unlimited via real Clerk Billing).
+**An AI-powered SaaS application for image analysis, built with FastAPI and Next.js.**
 
-Technologies:
-- Frontend: Next.js 14 (Pages Router) + Tailwind CSS
-- Backend: FastAPI (Python) on Vercel
-- Auth: Clerk (multi-provider + Billing)
-- AI: OpenAI gpt-4o-mini
+ **Deployed Application Link**: [https://ai-vision-service-9lzjze5gh-dany-deugoues-projects.vercel.app](https://ai-vision-service-9lzjze5gh-dany-deugoues-projects.vercel.app)
+## Project Overview
+This project is a **SaaS application** that allows users to upload images and receive AI-generated detailed descriptions (using OpenAI Vision API). The application includes:
+- **Secure authentication** via Clerk.
+- **Tier management** (Free: 1 analysis, Premium: unlimited).
+- **File validation** (format, size).
+- **Deployment on Vercel** with a backend (FastAPI) and frontend (Next.js) architecture.
+
+**Technologies Used**:
+- Backend: FastAPI (Python)
+- Frontend: Next.js (React)
+- Authentication: Clerk
+- AI: OpenAI Vision API (gpt-4o-mini)
 - Deployment: Vercel
 
-## Features (all required + bonus)
-- Health endpoint
-- Image analyze endpoint (validation, size/type check, base64, OpenAI)
-- Usage endpoint (shows tier + count)
-- Free: 1 analysis/session (in-memory)
-- Premium: unlimited (detected via Clerk JWT 'pla' claim)
-- Pro landing page with pricing tiers
-- Analysis page: upload, preview, loading, result, usage display, upgrade prompt
-- Clerk UserButton + manage subscription link
-- Error handling (400, 413, 429, 500)
+---
 
-Bonus: Real Clerk Billing integration (tier enforced backend)
+##  Features
 
-## Setup
-1. Clone repo
-2. `npm install`
-3. `pip install -r requirements.txt`
-4. Fill `.env.local` with Clerk + OpenAI keys
-5. `npm run dev`
+### Implemented Features
+- **Image Upload and Analysis**:
+  - Supports `.jpg`, `.jpeg`, `.png`, `.webp` formats (max 5MB).
+  - Converts images to base64 and sends them to the OpenAI API to generate descriptions.
+- **Authentication**:
+  - Login via Clerk (Email, Google, GitHub).
+  - Route protection with JWT.
+- **Tier Management**:
+  - **Free**: 1 analysis per session.
+  - **Premium**: Unlimited analyses.
+- **User Interface**:
+  - Landing page with pricing tiers.
+  - Analysis page with image preview and result display.
+- **Error Handling**:
+  - Clear messages for invalid files or exceeded limits.
 
-## API
-- GET /api/health → status
-- POST /api/analyze → {description: "..."} (multipart file + Bearer token)
-- GET /api/usage → {tier, analyses_used, limit}
+### Bonus Features (if applicable)
+- <Add any bonus features here, e.g., analysis history, result downloads, etc.>
 
-## Deployment
-vercel --prod
-Add env vars in Vercel: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY, CLERK_JWKS_URL, OPENAI_API_KEY
+---
 
-## Known Limitations
-- Usage in-memory → resets on redeploy
-- No analysis history
+##  Setup Instructions
 
-Live: [your-vercel-url]
+### Prerequisites
+- Node.js (v18+)
+- Python (v3.9+)
+- [Clerk](https://clerk.com/) account (for authentication)
+- [OpenAI](https://platform.openai.com/) API key
+
+### Clone the Repository
+```bash
+git clone https://github.com/Dany281022/ai-vision-service.git
+cd ai-vision-service
